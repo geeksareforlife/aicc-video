@@ -1,0 +1,8 @@
+{% extends "layouts/error.twig" %}
+
+{% block error_title %}No Provider for your video{% endblock %}
+
+{% block error_message %}
+<p>The given URL is not recognised as a service that is supported by the currently installed providers.</p>
+<p>The video URL that was given is: <strong>{{ video }}
+{% endblock %}

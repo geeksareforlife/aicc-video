@@ -1,0 +1,14 @@
+body {
+  padding-top: 80px;
+  margin-bottom: 30px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	background-color: #007bff;
+	border: 1px solid #004999;
+	color: #ffffff;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	color: #ffffff;
+}

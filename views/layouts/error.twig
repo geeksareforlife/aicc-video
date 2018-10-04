@@ -1,0 +1,11 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}An error has occurred{% endblock %}
+
+{% block content %}
+<p>The system was unable to recover from this error, please see the full message below.</p>
+<div class="alert alert-danger">
+	<h3>{% block error_title %}{% endblock %}</h3>
+	{% block error_message %}{% endblock %}
+</div>
+{% endblock %}

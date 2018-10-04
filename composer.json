@@ -1,0 +1,25 @@
+{
+    "name": "haywarj/aicc-video",
+    "type": "project",
+    "authors": [
+        {
+            "name": "James Hayward",
+            "email": "james.hayward@experian.com"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist"
+    },
+    "require": {
+        "twig/twig": "^2.0",
+        "geeksareforlife/config": "^0.1.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "filp/whoops": "^2.2",
+        "symfony/var-dumper": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acorn\\": "src/"
+        }
+    }
+}

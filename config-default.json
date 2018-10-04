@@ -1,0 +1,10 @@
+{
+	"providers": [
+		{
+			"namespace": "Vimeo"
+		},
+		{
+			"namespace": "Youtube"
+		}
+	]
+}
