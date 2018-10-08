@@ -17,7 +17,9 @@ $url .= '/';
 
 define('URL', $url);
 
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/views');
+define("TMP", __DIR__ . '/tmp');
+
+$loader = new Twig_Loader_Filesystem([__DIR__ . '/views', __DIR__ . '/templates']);
 $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/cache/views',
     'auto_reload' => true,

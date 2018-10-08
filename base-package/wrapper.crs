@@ -1,0 +1,14 @@
+[Course]
+course_creator = AICC Video Wrapper
+course_id = AICC_Wrapper
+course_system = Javascript
+course_title = AICC Video Wrapper
+level = 1
+max_fields_cst = 2
+total_aus = 1
+total_blocks = 1
+version = 4.0
+[Course_Behavior]
+max_normal = 1
+[Course_Description]
+This is an AICC wrapper for tracking online video content

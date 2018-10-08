@@ -1,0 +1,8 @@
+{
+	"compile": [
+		{
+			"input": "index.twig",
+			"output": "index.html"
+		}
+	]
+}
