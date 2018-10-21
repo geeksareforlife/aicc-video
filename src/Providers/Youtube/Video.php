@@ -1,8 +1,8 @@
 <?php
 
-namespace Acorn\Providers\Youtube;
+namespace GeeksAreForLife\AiccVideo\Providers\Youtube;
 
-use Acorn\Providers\VideoInterface;
+use GeeksAreForLife\AiccVideo\Providers\VideoInterface;
 
 class Video
 {

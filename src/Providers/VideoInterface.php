@@ -1,6 +1,6 @@
 <?php
 
-namespace Acorn\Providers;
+namespace GeeksAreForLife\AiccVideo\Providers;
 
 interface VideoInterface
 {
