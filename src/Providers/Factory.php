@@ -1,12 +1,12 @@
 <?php
 
-namespace Acorn\Providers;
+namespace GeeksAreForLife\AiccVideo\Providers;
 
 class Factory
 {
 	final public static function loadProvider($providerName, &$config)
 	{
-		$class = 'Acorn\\Providers\\' . $providerName . '\\Video';
+		$class = 'GeeksAreForLife\\AiccVideo\\Providers\\' . $providerName . '\\Video';
 
 		// TODO: check class exists here
 

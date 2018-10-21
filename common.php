@@ -34,7 +34,7 @@ $serviceNames = [];
 
 foreach ($config->getValue('providers') as $provider)
 {
-	$provider = Acorn\Providers\Factory::loadProvider($provider['namespace'], $config);
+	$provider = GeeksAreForLife\AiccVideo\Providers\Factory::loadProvider($provider['namespace'], $config);
 	$providers[$provider->getName()] = $provider;
 	$serviceNames[] = $provider->getName();
 }
