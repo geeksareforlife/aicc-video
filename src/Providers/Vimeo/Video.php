@@ -1,8 +1,8 @@
 <?php
 
-namespace Acorn\Providers\Vimeo;
+namespace GeeksAreForLife\AiccVideo\Providers\Vimeo;
 
-use Acorn\Providers\VideoInterface;
+use GeeksAreForLife\AiccVideo\Providers\VideoInterface;
 use GuzzleHttp\Client;
 
 class Video implements VideoInterface
