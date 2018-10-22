@@ -32,4 +32,4 @@ $providerDetails = [
 	'scripts'	=> $provider->getServiceJavascriptURIs(),
 ];
 
-echo $twig->render('packager/index.twig', ['video' => $video, 'provider' => $providerDetails]);
+echo $twig->render('packager/index.twig', ['video' => $video, 'provider' => $providerDetails, 'templates' => getTemplates()]);

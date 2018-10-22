@@ -26,7 +26,7 @@
 
 <form action="package.php" method="POST">
 	<input type="hidden" name="videoid" value="{{ video.id }}">
-	<input type="hidden" name="provider" value="{{provider.name }}">
+	<input type="hidden" name="provider" value="{{ provider.name }}">
 
 	<div class="row">
 		<div class="col-sm-5">
@@ -39,6 +39,16 @@
 			<div class="row mb-3">
 				<div class="col-sm-4">Duration:</div>
 				<div class="col-sm-8" id="video-duration">{{ video.duration }}</div>
+			</div>
+			<div class="form-group row">
+				<label for="template" class="col-sm-4 col-form-label">Template</label>
+				<div class="col-sm-8">
+					<select class="form-control" id="template" name="template">
+					{% for template in templates %}
+						<option value="{{ template.directory }}">{{ template.name }}</option>
+					{% endfor %}
+					</select>
+				</div>
 			</div>
 			<div class="form-group row">
 				<label for="checkpoints" class="col-sm-4 col-form-label">Checkpoints</label>
@@ -54,7 +64,7 @@
 
 	<div class="row">
 		<div class="col-sm-5">
-			<p class="text-left"><button type="submit" class="btn btn-primary" id="submit">Build Package	</button></p>
+			<p class="text-left"><button type="submit" class="btn btn-primary" id="submit">Build Package</button></p>
 		</div>
 		<div class="col-sm-7">
 			<p class="text-right"><button type="button" class="btn btn-primary" id="add-checkpoint">Add Checkpoint</button></p>

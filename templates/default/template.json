@@ -1,4 +1,5 @@
 {
+	"name": "Default",
 	"compile": [
 		{
 			"input": "index.twig",
