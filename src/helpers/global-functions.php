@@ -67,3 +67,37 @@ function copyFiles($files, $destination)
         copy($source, $destination . '/' . $filename);
     }
 }
+
+function getBaseFiles()
+{
+    // get all the files
+    $files = getFileList(BASE_PACKAGE);
+
+    // process into an array with relative keys
+    $returnFiles = [];
+    foreach ($files as $file) {
+        $key = str_replace(BASE_PACKAGE, "", $file);
+        $returnFiles[$key] = $file;
+    }
+    return $returnFiles;
+}
+
+function getFileList($directory, $recursive = true)
+{
+    $files = [];
+
+    foreach (new DirectoryIterator($directory) as $fileInfo) {
+        if ($fileInfo->isDot()) {
+            continue;
+        }
+
+        if ($fileInfo->isDir() && $recursive == true) {
+            $files = array_merge($files, getFileList($fileInfo->getPathname(), $recursive));
+        }
+
+        $files[] = $fileInfo->getPathname();
+
+    }
+
+    return $files;
+}

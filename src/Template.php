@@ -40,18 +40,20 @@ class Template
      */
     public function process($tempDir, $videoid, $provider, $title, $checkpoints)
     {
-        // copy base package to temp
-        /*$files = getBaseFiles();
+        // Get base package files
+        $files = getBaseFiles();
 
-        copyFiles($files, $tempDir);*/
+        // get any plain template files
+        
 
-        // copy any plain template files to temp
+        // get provider files
+        
 
+        // copy files to temp
+        var_dump($files);
+        /*copyFiles($files, $tempDir);*/
 
         // process template files and output to temp
-
-
-        // copy provider files to temp
 
 
         // Zip up files and return to user - delete unzipped files

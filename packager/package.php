@@ -11,7 +11,7 @@ while (file_exists($tempDir)) {
     $tempDir = getTempDirectory();
 }
 
-$template->process($tempDir, $_POST['videoid'], $_POST['provider'], $_POST['title'], $_POST['checkpoints']);
+$template->process($tempDir, $_POST['videoid'], $_POST['provider'], $_POST['videoTitle'], $_POST['checkpoints']);
 
 
 // download the Zip file
