@@ -8,15 +8,26 @@ class Template
     private $config;
 
     private $directory;
+    private $directoryName;
     private $name;
+
+    private $twig;
+
+    private $tempDir;
 
     public function __construct($directory)
     {
-        $this->directory = str_replace(TEMPLATES . '/', '', $directory);
+        $this->directory = $directory;
+        $this->directoryName = str_replace(TEMPLATES . '/', '', $directory);
 
         $this->config = json_decode(file_get_contents($directory . '/template.json'), true);
 
         $this->name = $this->config['name'];
+
+        $loader = new \Twig_Loader_Filesystem($directory);
+        $this->twig = new \Twig_Environment($loader, array(
+            'auto_reload' => true,
+        ));
     }
 
     public function getName()
@@ -27,6 +38,11 @@ class Template
     public function getDirectory()
     {
         return $this->directory;
+    }
+
+    public function getDirectoryName()
+    {
+        return $this->directoryName;
     }
 
     /**
@@ -40,22 +56,75 @@ class Template
      */
     public function process($tempDir, $videoid, $provider, $title, $checkpoints)
     {
-        // Get base package files
-        $files = getBaseFiles();
+        $this->tempDir = $tempDir;
+        dump($this->tempDir);
 
-        // get any plain template files
-        
+        // Get package files
+        // template files overwrite the base package files
+        $files = array_merge(getTemplateFiles(BASE_PACKAGE), getTemplateFiles($this->getDirectory()));
 
-        // get provider files
-        
+        $templateVariables = $this->getVariables($videoid, $provider, $title, $checkpoints);
 
-        // copy files to temp
-        var_dump($files);
-        /*copyFiles($files, $tempDir);*/
+        dump($files);
+        foreach ($files as $relative => $file) {
+            /*$extension = pathinfo($file, PATHINFO_EXTENSION);
 
-        // process template files and output to temp
+            if ($extension == "twig") {
+                // compile and place into file
+                $compiled = $this->twig->render($relative, $templateVariables);
 
+                // trim the twig extension
+                $filename = substr($relative, 0, -5);
 
-        // Zip up files and return to user - delete unzipped files
+                file_put_contents($this->tempDir . $filename, $compiled);
+            } else {
+                // copy the file to the tmp dir
+                copyFile($file, $this->tempDir . $relative);
+            }*/
+        }
+    }
+
+    public function zipAndReturn()
+    {
+        // Zip up files and return to user
+    }
+
+    public function removeTempFiles()
+    {
+        $this->removeTempDir($this->tempDir);
+    }
+
+    private function removeTempDir($directory)
+    {
+        if (strpos($directory, TMP) === FALSE) {
+            throw new Exception("Attmept to remove a non temp directory! " . $directory, 1);
+            die; 
+        }
+
+        $dir = opendir($directory);
+        while(false !== ( $file = readdir($dir)) ) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                $full = $directory . '/' . $file;
+                if ( is_dir($full) ) {
+                    $this->removeTempDir($full);
+                }
+                else {
+                    unlink($full);
+                }
+            }
+        }
+        closedir($dir);
+        rmdir($directory);
+    }
+
+    private function getVariables($videoid, $provider, $title, $checkpoints)
+    {
+        $variables = [
+            'videoid'       => $videoid,
+            'title'         => $title,
+            'checkpoints'   => $checkpoints,
+        ];
+
+        return $variables;
     }
 }

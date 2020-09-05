@@ -23,7 +23,7 @@ define("TEMPLATES", __DIR__ . '/templates');
 
 define("BASE_PACKAGE", __DIR__ . '/base-package');
 
-$loader = new Twig_Loader_Filesystem([__DIR__ . '/views', __DIR__ . '/templates']);
+$loader = new Twig_Loader_Filesystem([__DIR__ . '/views']);
 $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/cache/views',
     'auto_reload' => true,

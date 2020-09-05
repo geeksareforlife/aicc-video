@@ -6,6 +6,19 @@ $(document).ready(function() {
 	$('#add-checkpoint').click(addCheckpoint);
 });
 
+function showTitleAndDuration()
+{
+	$(document).ready(function() {
+		title = Video.getTitle().then(function(title) {
+			$("#videoTitle").val(title);
+		});
+
+		duration = Video.getDuration().then(function(duration) {
+			$("#video-duration").html(formatDuration(duration))
+		});
+	});
+}
+
 function addCheckpoint()
 {
 	Video.getCurrentPosition().then(function (seconds) {

@@ -19,13 +19,21 @@ if (!$provider) {
 	die;
 }
 
-$provider->loadVideo();
+if ($provider->loadVideo()) {
+	$video = [
+		'id'	=> $provider->getVideoId(),
+		'title' => $provider->getTitle(),
+		'duration' => formatDuration($provider->getDuration()),
+	];
+} else {
+	$video = [
+		'id'	=> $provider->getVideoId(),
+		'title' => false,
+		'duration' => false,
+	];
+}
 
-$video = [
-	'id'	=> $provider->getVideoId(),
-	'title' => $provider->getTitle(),
-	'duration' => formatDuration($provider->getDuration()),
-];
+
 
 $providerDetails = [
 	'name'		=> $provider->getName(),

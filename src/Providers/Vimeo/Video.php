@@ -48,12 +48,19 @@ class Video implements VideoInterface
 	{
 		$client = $this->getHttpClient();
 
-		$response = $client->request('GET', 'https://api.vimeo.com/videos/' . $this->videoId);
+		try {
+			$response = $client->request('GET', 'https://api.vimeo.com/videos/' . $this->videoId);
+		} catch (\Exception $e) {
+			// either a network issue, or a more likely a private video
+			return false;
+		}
 
 		$videoData = json_decode($response->getBody(), true);
 
 		$this->title = $videoData['name'];
 		$this->duration = $videoData['duration'];
+
+		return true;
 	}
 
 	public function getVideoId()

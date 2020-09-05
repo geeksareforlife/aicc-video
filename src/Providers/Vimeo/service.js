@@ -18,5 +18,15 @@ window.Video = {
 	getCurrentPosition: function()
 	{
 		return this.player.getCurrentTime();
+	},
+
+	getDuration: function()
+	{
+		return this.player.getDuration();
+	},
+
+	getTitle: function()
+	{
+		return this.player.getVideoTitle();
 	}
 };

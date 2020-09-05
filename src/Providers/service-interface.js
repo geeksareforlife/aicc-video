@@ -11,3 +11,9 @@ Video.embedVideo(videoId, elementID);
 
 // returns a Promise, that when resolved, gives the current position of the video, in seconds
 Video.getCurrentPosition();
+
+// returns a Promise, that when resolved, gives the duration of the video, in seconds
+Video.getDuration();
+
+// returns a Promise, that when resolved, gives the title of the video
+Video.getTitle();

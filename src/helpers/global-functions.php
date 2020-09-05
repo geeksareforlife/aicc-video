@@ -54,29 +54,29 @@ function getTempDirectory()
     return TMP . '/' . substr(hash("sha256", microtime()), 0, 10);
 }
 
-function copyFiles($files, $destination)
+function copyFile($source, $destination)
 {
     if (!file_exists($destination)) {
-        if (!mkdir($destination)) {
-            throw new \Exception("Unable to create temp directory " . $destination);
+        if (!file_exists(basename($destination)) && !mkdir(basename($destination))) {
+            throw new \Exception("Unable to create directory " . basename($destination));
         }
+    } else {
+        throw new \Exception("Cannot copy file into package as it already exists " . $destination, 1);
+        
     }
 
-    foreach ($files as $source) {
-        $filename = basename($source);
-        copy($source, $destination . '/' . $filename);
-    }
+    return copy($source, $destination);
+
 }
 
-function getBaseFiles()
+function getTemplateFiles($directory)
 {
-    // get all the files
-    $files = getFileList(BASE_PACKAGE);
+    $files = getFileList($directory);
 
     // process into an array with relative keys
     $returnFiles = [];
     foreach ($files as $file) {
-        $key = str_replace(BASE_PACKAGE, "", $file);
+        $key = str_replace($directory, "", $file);
         $returnFiles[$key] = $file;
     }
     return $returnFiles;
